@@ -24,7 +24,5 @@
 转发或者用于自己项目请保留本项目的版权声明,谢谢.
 
 fafafaStudio
-
 Email:dtamade@gmail.com
-
 QQ群:685403987  QQ:179033731
