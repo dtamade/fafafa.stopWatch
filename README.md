@@ -12,9 +12,11 @@
 
 高精度的计时器
 
-stopWatch 毫秒级精度
-hdStopWatch linux纳秒级精度,windows亚纳秒精度(100纳秒)
-tscStopWatch 纳秒级精度,硬件TSC计数器
+## 接口层次
+
+- [ ] stopWatch
+	- [ ] stopWatchHD
+	- [ ] stopWatchTSC
 
 
 ## 声明
