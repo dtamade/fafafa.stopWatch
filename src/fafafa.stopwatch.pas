@@ -32,7 +32,7 @@ QQ群:685403987  QQ:179033731
 }
 
 
-{$DEFINE STOPWATCH_ENABLE_RDTSCP} // RDTSCP会比CPUID+RDTSC开销小点.
+{$DEFINE STOPWATCH_ENABLE_RDTSCP}// RDTSCP会比CPUID+RDTSC开销小点.
 
 {$mode ObjFPC}{$H+}
 
@@ -61,7 +61,7 @@ type
     Elapsed: double;
   end;
 
-{ 创建普通定时器 }
+  { 创建普通定时器 }
 function stopWatch_create(aRunNow: boolean): pstopWatch_t;
 
 { 创建高精度定时器 }
@@ -283,7 +283,7 @@ type
     property Resolution: uint64 read GetResolution;
   end;
 
-{ 构造秒表对象 aRunNow 立即执行 }
+  { 构造秒表对象 aRunNow 立即执行 }
 function createStopWatch(aRunNow: boolean): TStopWatch; overload;
 function createStopWatch: TStopWatch; overload;
 
@@ -300,7 +300,7 @@ type
     function CreateWatch(aRunNow: boolean): pstopWatch_t; override;
   end;
 
-{ 构造高清秒表对象 aRunNow 立即执行 }
+  { 构造高清秒表对象 aRunNow 立即执行 }
 function createHDStopWatch(aRunNow: boolean): THDStopWatch; overload;
 function createHDStopWatch: THDStopWatch; overload;
 
@@ -328,7 +328,7 @@ type
     procedure Calibrate;
   end;
 
-{ 构造TSC硬件计时器高清秒表对象 aRunNow 立即执行 }
+  { 构造TSC硬件计时器高清秒表对象 aRunNow 立即执行 }
 function createTSCStopWatch(aRunNow: boolean): TTSCStopWatch; overload;
 function createTSCStopWatch: TTSCStopWatch; overload;
 
@@ -415,10 +415,10 @@ var
 
   TSC_TICK_PER_NS: double;
 
-{$AsmMode INTEL }
+  {$AsmMode INTEL }
 function ReadTSC: uint64; assembler;
 asm
-  {$IfDEF CPU64}
+         {$IfDEF CPU64}
     XOR   RAX, RAX
     {$IFDEF STOPWATCH_ENABLE_RDTSCP}
       RDTSCP
@@ -430,17 +430,17 @@ asm
     {$ENDIF}
     SHL   RDX, 32
     OR    RAX, RDX
-  {$else}
-  XOR     EAX, EAX
-    {$IFDEF STOPWATCH_ENABLE_RDTSCP}
-      RDTSCP
-    {$ELSE}
+         {$else}
+         XOR     EAX, EAX
+         {$IFDEF STOPWATCH_ENABLE_RDTSCP}
+         RDTSCP
+         {$ELSE}
       PUSH    EBX
       CPUID
       POP     EBX
       RDTSC
-    {$ENDIF}
-  {$endif}
+         {$ENDIF}
+         {$endif}
 end;
 
 procedure USleep(aUS: uint64);
@@ -905,7 +905,7 @@ end;
 
 function TStopWatch.GetTick: uint64;
 begin
-  stopWatch_getTick(FWatch);
+  Result := stopWatch_getTick(FWatch);
 end;
 
 function TStopWatch.GetElapsed: elapsed_t;
